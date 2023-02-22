@@ -10,7 +10,10 @@ app.use(helmet());
 app.use(compression());
 
 // init db
-
+require("./dbs/init.mongodb");
+const { countConnection, checkOverload } = require("./helpers/check.connect");
+countConnection();
+// checkOverload();
 // init routes
 app.get("/", (req, res, next) => {
   return res.status(200).json({
